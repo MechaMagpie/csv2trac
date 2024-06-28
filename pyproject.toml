@@ -1,0 +1,101 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "csv2trac"
+version = "0.0.1"
+authors = [
+    { name="Emma Grampp", email="emma.grampp@rt-labs.com" }
+]
+description = "Script that converts a CSV file to a wiki (Trac) format table"
+readme = "readme.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = [
+    "codespell",
+    "mypy",
+    "ruff",
+    "tomli",  # for codespell
+]
+
+[project.scripts]
+csv2trac = "csv2trac.__main__:main"
+
+[tool.ruff]
+preview = true
+respect-gitignore = true
+line-length = 78
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+  "A",      # flake8-builtins
+  "AIR",    # Airflow
+  "ARG",    # flake8-unused-arguments
+  "ASYNC",  # flake8-async
+  "B",      # flake8-bugbear
+  "BLE",    # flake8-blind-except
+  "C4",     # flake8-comprehensions
+  "COM",    # flake8-commas
+  "D",      # pydocstyle
+  "DJ",     # flake8-django
+  "DTZ",    # flake8-datetimez
+  "E",      # pycodestyle
+  "ERA",    # eradicate
+  "EXE",    # flake8-executable
+  "F",      # pyflakes
+  "FA",     # flake8-future-annotations
+  "FBT",    # flake8-boolean-trap
+  "FLY",    # flynt
+  "FURB",   # refurb
+  "G",      # flake8-logging-format
+  "I",      # isort
+  "ICN",    # flake8-import-conventions
+  "INP",    # flake8-no-pep420
+  "INT",    # flake8-gettext
+  "LOG",    # flake8-logging
+  "N",      # pep8-naming
+  "NPY",    # NumPy-specific rules
+  "PD",     # pandas-vet
+  "PERF",   # Perflint
+  "PGH",    # pygrep-hooks
+  "PIE",    # flake8-pie
+  "PL",     # Pylint
+  "PT",     # flake8-pytest-style
+  "PTH",    # flake8-use-pathlib
+  "PYI",    # flake8-pyi
+  "Q003",   # flake8-quotes
+  "Q004",   # flake8-quotes
+  "RET",    # flake8-return
+  "RSE",    # flake8-raise
+  "RUF",    # Ruff-specific rules
+  "S",      # flake8-bandit
+  "SIM",    # flake8-simplify
+  "SLF",    # flake8-self
+  "SLOT",   # flake8-slots
+  "T10",    # flake8-debugger
+  "T20",    # flake8-print
+  "TCH",    # flake8-type-checking
+  "TID",    # flake8-tidy-imports
+  "ASYNC1", # flake8-trio
+  "TRY",    # tryceratops
+  "UP",     # pyupgrade
+  "W",      # pycodestyle
+  "YTT",    # flake8-2020
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+[tool.ruff.format]
+quote-style = "single"
