@@ -12,17 +12,27 @@ class _TracSep:
     sep = '||'
     header = '='
     row = '\n'
+    escape = '!'
 
 
 trac_link_case = re.compile(r'^[A-Z][a-z][^ _]*[A-Z][a-z]')
 
 
+def _escape_case(frag: str) -> str:
+    escape = _TracSep.escape if trac_link_case.match(frag) else ''
+    return escape + frag
+
+
+def _escape_item(item: str) -> str:
+    return ' '.join(
+        _escape_case(frag) for frag in item.split(' ')
+    )
+
+
 def to_tracstr(obj: Any) -> str:
     """Convert to string and escape Trac links."""
-    strval = str(obj)
-    strval = strval.replace('#', '!#')
-    escape = '!' if trac_link_case.search(strval) else ''
-    return escape + strval
+    strval = str(obj).replace('#', '!#')
+    return _escape_item(strval)
 
 
 def trac_table_row(row: Row, *, header: bool = False) -> Iterator[str]:
